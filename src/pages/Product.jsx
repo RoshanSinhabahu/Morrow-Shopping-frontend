@@ -9,7 +9,7 @@ export default function Product({ id, addToCart, navigate }) {
         ← Back to shop
       </button>
       <div className="grid grid-cols-2 gap-[8vw] max-md:grid-cols-1 max-md:gap-12">
-        <div className="relative bg-warm">
+        <div className="relative">
           <img className="aspect-square w-full object-cover" src={product.image} alt={product.name} />
           <span className="absolute left-5 top-5 bg-paper px-2 py-1 font-mono text-sm uppercase">{product.tag}</span>
         </div>

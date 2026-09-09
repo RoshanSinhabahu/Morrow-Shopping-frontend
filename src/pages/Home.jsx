@@ -1,21 +1,22 @@
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { ArrowRight, ShoppingBag, Zap } from "lucide-react";
-import { collections, products } from "../data/catalog";
+import { collections, featuredBrands, products } from "../data/catalog";
 import Newsletter from "../components/Newsletter";
 
-const featuredBrands = [
-  { name: "Apple", logo: "https://cdn.simpleicons.org/apple/22211f" },
-  { name: "Samsung Electronics", logo: "https://cdn.simpleicons.org/samsung/22211f" },
-  { name: "NVIDIA", logo: "https://cdn.simpleicons.org/nvidia/22211f" },
-  { name: "Xiaomi", logo: "https://cdn.simpleicons.org/xiaomi/22211f" },
-  { name: "vivo", logo: "https://cdn.simpleicons.org/vivo/22211f" },
-  { name: "OPPO", logo: "https://cdn.simpleicons.org/oppo/22211f" },
-  { name: "HUAWEI", logo: "https://cdn.simpleicons.org/huawei/22211f" },
-  { name: "Motorola (Lenovo)", logo: "https://cdn.simpleicons.org/motorola/22211f" },
-  { name: "Google (Alphabet)", logo: "https://cdn.simpleicons.org/google/22211f" },
-];
-
 export default function Home({ navigate, addToCart }) {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia("(max-width: 767px)");
+    const updateViewport = () => setIsMobile(mediaQuery.matches);
+
+    updateViewport();
+    mediaQuery.addEventListener("change", updateViewport);
+
+    return () => mediaQuery.removeEventListener("change", updateViewport);
+  }, []);
+
   return (
     <>
       <section className="relative flex min-h-[590px] h-[min(720px,calc(100vh-110px))] items-center overflow-hidden px-[11vw] py-[7vw] text-[#fffaf3] max-md:min-h-[650px] max-md:h-[calc(100vh-98px)] max-md:items-end max-md:px-[8vw] max-md:py-[12vw]">
@@ -75,9 +76,9 @@ export default function Home({ navigate, addToCart }) {
         </div>
         <div className="overflow-hidden">
           <motion.div
-            className="flex w-max items-start gap-[7vw] px-[5.2vw] max-md:gap-14 max-md:px-[8vw]"
+            className="flex w-max items-start gap-[7vw] px-[5.2vw] max-md:gap-6 max-md:px-[8vw]"
             animate={{ x: ["0%", "-50%"] }}
-            transition={{ duration: 100, ease: "linear", repeat: Infinity }}
+            transition={{ duration: isMobile ? 35 : 100, ease: "linear", repeat: Infinity }}
           >
             {[...featuredBrands, ...featuredBrands].map((brand, index) => (
               <span

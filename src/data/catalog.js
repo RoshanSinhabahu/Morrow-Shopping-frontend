@@ -105,3 +105,15 @@ export const stories = [
       "https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=1200&q=85",
   },
 ];
+
+export const featuredBrands = [
+  { name: "Apple", logo: "https://cdn.simpleicons.org/apple/22211f" },
+  { name: "Samsung Electronics", logo: "https://cdn.simpleicons.org/samsung/22211f" },
+  { name: "NVIDIA", logo: "https://cdn.simpleicons.org/nvidia/22211f" },
+  { name: "Xiaomi", logo: "https://cdn.simpleicons.org/xiaomi/22211f" },
+  { name: "vivo", logo: "https://cdn.simpleicons.org/vivo/22211f" },
+  { name: "OPPO", logo: "https://cdn.simpleicons.org/oppo/22211f" },
+  { name: "HUAWEI", logo: "https://cdn.simpleicons.org/huawei/22211f" },
+  { name: "Motorola (Lenovo)", logo: "https://cdn.simpleicons.org/motorola/22211f" },
+  { name: "Google (Alphabet)", logo: "https://cdn.simpleicons.org/google/22211f" },
+];

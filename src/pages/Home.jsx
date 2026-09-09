@@ -3,6 +3,18 @@ import { ArrowRight, ShoppingBag, Zap } from "lucide-react";
 import { collections, products } from "../data/catalog";
 import Newsletter from "../components/Newsletter";
 
+const featuredBrands = [
+  { name: "Apple", logo: "https://cdn.simpleicons.org/apple/22211f" },
+  { name: "Samsung Electronics", logo: "https://cdn.simpleicons.org/samsung/22211f" },
+  { name: "NVIDIA", logo: "https://cdn.simpleicons.org/nvidia/22211f" },
+  { name: "Xiaomi", logo: "https://cdn.simpleicons.org/xiaomi/22211f" },
+  { name: "vivo", logo: "https://cdn.simpleicons.org/vivo/22211f" },
+  { name: "OPPO", logo: "https://cdn.simpleicons.org/oppo/22211f" },
+  { name: "HUAWEI", logo: "https://cdn.simpleicons.org/huawei/22211f" },
+  { name: "Motorola (Lenovo)", logo: "https://cdn.simpleicons.org/motorola/22211f" },
+  { name: "Google (Alphabet)", logo: "https://cdn.simpleicons.org/google/22211f" },
+];
+
 export default function Home({ navigate, addToCart }) {
   return (
     <>
@@ -34,7 +46,8 @@ export default function Home({ navigate, addToCart }) {
           </div>
         </div>
       </section>
-      <section className="mx-auto grid max-w-[1240px] grid-cols-2 gap-[8vw] px-[5.2vw] py-[120px] max-md:grid-cols-1 max-md:gap-10 max-md:px-[8vw] max-md:py-20">
+      
+      <section className="mx-auto grid max-w-[1240px] grid-cols-2 gap-[8vw] px-[5.2vw] py-24 max-md:grid-cols-1 max-md:gap-10 max-md:px-[8vw] max-md:py-20">
         <div>
           <p className="mb-4 font-mono text-sm uppercase tracking-[0.14em] text-muted">Why Morrow</p>
           <h2 className="text-[clamp(40px,4.5vw,64px)] font-medium leading-[0.96] tracking-[-0.05em]">
@@ -54,7 +67,37 @@ export default function Home({ navigate, addToCart }) {
           </button>
         </div>
       </section>
-      <section className="mx-auto max-w-[1400px] px-[5.2vw] pb-[120px] max-md:px-[8vw] max-md:pb-20">
+      <section className="overflow-hidden border-y border-line bg-warm py-7" aria-label="Brands we admire">
+        <div className="mx-auto mb-6 max-w-[620px] px-[8vw] text-center">
+          <p className="m-0 font-serif text-[clamp(20px,2.4vw,30px)] leading-tight text-ink">
+            Inspired by the companies
+          </p>
+        </div>
+        <div className="overflow-hidden">
+          <motion.div
+            className="flex w-max items-start gap-[7vw] px-[5.2vw] max-md:gap-14 max-md:px-[8vw]"
+            animate={{ x: ["0%", "-50%"] }}
+            transition={{ duration: 100, ease: "linear", repeat: Infinity }}
+          >
+            {[...featuredBrands, ...featuredBrands].map((brand, index) => (
+              <span
+                className="flex h-14 w-[170px] shrink-0 items-center justify-center max-md:w-[145px]"
+                key={`${brand.name}-${index}`}
+                aria-hidden={index >= featuredBrands.length}
+              >
+                <img
+                  className="h-14 w-auto max-w-[170px] object-contain opacity-80"
+                  src={brand.logo}
+                  alt={brand.name}
+                  loading="lazy"
+                  decoding="async"
+                />
+              </span>
+            ))}
+          </motion.div>
+        </div>
+      </section>
+      <section className="mx-auto max-w-[1400px] px-[5.2vw] pb-[120px] max-md:px-[8vw] max-md:pb-20 py-20">
         <div className="mb-10 flex items-end justify-between max-md:block">
           <div>
             <p className="mb-4 font-mono text-sm uppercase tracking-[0.14em] text-muted">Explore the collection</p>
@@ -75,6 +118,7 @@ export default function Home({ navigate, addToCart }) {
               onClick={() => navigate(item.path)}
             >
               <img className="size-full object-cover transition-transform duration-500 hover:scale-105" src={item.image} alt={item.title} />
+              <div className="absolute inset-0 bg-black/35" />
               <div className="absolute inset-x-7 bottom-6 z-[1]">
                 <span className="font-mono text-sm opacity-70">0{index + 1}</span>
                 <h3 className="my-5 mb-1.5 font-serif text-[27px]">{item.title}</h3>

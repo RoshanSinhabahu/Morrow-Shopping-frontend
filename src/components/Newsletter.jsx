@@ -2,7 +2,7 @@ import { ArrowRight } from "lucide-react";
 
 export default function Newsletter() {
   return (
-    <section className="mx-auto grid max-w-[1240px] grid-cols-2 gap-[8vw] px-[5.2vw] py-[120px]">
+    <section className="mx-auto grid max-w-[1240px] grid-rows-2 sm:grid-cols-2 gap-[8vw] px-[5.2vw] py-[120px]">
       <div>
         <p className="mb-4 font-mono text-sm uppercase tracking-[0.14em] text-muted">Stay in the loop</p>
         <h2 className="text-[clamp(40px,4.5vw,64px)] font-medium leading-[0.96] tracking-[-0.05em]">

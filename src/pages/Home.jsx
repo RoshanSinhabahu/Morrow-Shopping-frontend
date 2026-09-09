@@ -9,7 +9,7 @@ export default function Home({ navigate, addToCart }) {
       <section className="relative flex min-h-[590px] h-[min(720px,calc(100vh-110px))] items-center overflow-hidden px-[11vw] py-[7vw] text-[#fffaf3] max-md:min-h-[650px] max-md:h-[calc(100vh-98px)] max-md:items-end max-md:px-[8vw] max-md:py-[12vw]">
         <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(18,20,20,.75),rgba(18,20,20,.2)),url('https://images.unsplash.com/photo-1556656793-08538906a9f8?auto=format&fit=crop&w=2200&q=90')] bg-cover bg-center" />
         <div className="relative z-[1] max-w-[565px]">
-          <p className="mb-4 font-mono text-sm uppercase tracking-[0.14em] text-white/70">New release · 2025</p>
+          <p className="mb-4 font-mono text-sm uppercase tracking-[0.14em] text-white/70">New release · 2026</p>
           <h1 className="mb-7 text-[clamp(55px,7.3vw,105px)] font-medium leading-[0.96] tracking-[-0.05em]">
             Technology,
             <br />

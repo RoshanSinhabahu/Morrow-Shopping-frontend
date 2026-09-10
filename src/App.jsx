@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
+import { Check } from "lucide-react";
 import Announcement from "./components/Announcement";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
@@ -17,6 +18,7 @@ function App() {
   const [searchOpen, setSearchOpen] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [query, setQuery] = useState("");
+  const [cartNotice, setCartNotice] = useState(false);
 
   useEffect(() => {
     const handleHash = () =>
@@ -32,6 +34,7 @@ function App() {
   };
 
   const addToCart = (product) => {
+    setCartNotice(true);
     setCart((items) => {
       const existingItem = items.find((item) => item.id === product.id);
 
@@ -46,6 +49,13 @@ function App() {
       return [...items, { ...product, quantity: 1 }];
     });
   };
+
+  useEffect(() => {
+    if (!cartNotice) return undefined;
+
+    const timeout = window.setTimeout(() => setCartNotice(false), 2200);
+    return () => window.clearTimeout(timeout);
+  }, [cartNotice]);
 
   const removeFromCart = (productId) => {
     setCart((items) =>
@@ -92,6 +102,23 @@ function App() {
         query={query}
         setQuery={setQuery}
       />
+      <AnimatePresence>
+        {cartNotice && (
+          <motion.div
+            className="fixed right-5 top-24 z-30 flex items-center gap-3 border border-line bg-paper px-4 py-3 shadow-[0_12px_30px_rgba(34,33,31,0.14)] max-md:left-5 max-md:right-5"
+            role="status"
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.2 }}
+          >
+            <span className="grid size-6 place-items-center rounded-full bg-orange text-white">
+              <Check size={15} strokeWidth={2.5} />
+            </span>
+            <span className="text-sm font-medium">Added to bag successfully</span>
+          </motion.div>
+        )}
+      </AnimatePresence>
       <main>
         <AnimatePresence mode="wait">
           <motion.div
